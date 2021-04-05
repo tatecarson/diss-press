@@ -1,1282 +1,515 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
-    />
-    <style>
-      .container {
-        position: relative;
-        width: 100%;
-        overflow: hidden;
-        padding-top: 100%; /* 1:1 Aspect Ratio */
-      }
 
-      .responsive-iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-    </style>
-    <title>Participatory mobile music with smartphones</title>
-    <link href="big.css" rel="stylesheet" type="text/css" />
-    <link href="themes/charleston.css" rel="stylesheet" type="text/css" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <style>
+    .container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      padding-top: 100%;
+      /* 1:1 Aspect Ratio */
+    }
 
-    <script src="js/index-citations-global.js"></script>
-    <script>
-      function run() {
-        IndexCitations({
-          referenceId: "#citations",
-        });
+    .responsive-iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+  <title>Participatory mobile music with smartphones</title>
+  <link href="big.css" rel="stylesheet" type="text/css" />
+  <link href="themes/charleston.css" rel="stylesheet" type="text/css" />
 
-        const citations = document.querySelectorAll(".citationLink");
-        // TODO: update this to be the last slide whenever you make it
-        citations.forEach((citation) => (citation.href = "#53"));
+  <script src="js/index-citations-global.js"></script>
+  <script>
+    function run() {
+      IndexCitations({
+        referenceId: "#citations",
+      });
 
-        const ref = document.querySelectorAll("#citations cite");
+      const citations = document.querySelectorAll(".citationLink");
+      // TODO: update this to be the last slide whenever you make it
+      citations.forEach((citation) => (citation.href = "#53"));
 
-        ref.forEach((reference) => {
-          var el = document.createElement("span");
-          el.innerHTML = '<a href="javascript:history.back()">&#8627;</a>';
-          insertAfter(reference, el);
-        });
-      }
+      const ref = document.querySelectorAll("#citations cite");
 
-      if (document.readyState != "loading") {
-        run();
-      } else {
-        document.addEventListener("DOMContentLoaded", run);
-      }
+      ref.forEach((reference) => {
+        var el = document.createElement("span");
+        el.innerHTML = '<a href="javascript:history.back()">&#8627;</a>';
+        insertAfter(reference, el);
+      });
+    }
 
-      function insertAfter(referenceNode, newNode) {
-        referenceNode.parentNode.insertBefore(
-          newNode,
-          referenceNode.nextSibling
-        );
-      }
-    </script>
-    <script src="big.js"></script>
-    <script src="js/lazysizes.min.js"></script>
-  </head>
-  <body>
-    <!-- 
-      - introduce student engagement from the beginning then talk about how you might involve students  undergrad and grad in each work. 
-      - talk about background processes between works
-      - talk about the technologies that the works share 
-      - specific technologies that you had challenges working with and how they changed over time 
-      - talk about how your work relates to other people 
-      - how did your ideas develope from work to work? 
-      - explain where the works were shown 
+    if (document.readyState != "loading") {
+      run();
+    } else {
+      document.addEventListener("DOMContentLoaded", run);
+    }
 
-      - how do your motivations change piece by piece?
-      - show some technical knowledge but within reason
-        - show some data flow documents to describe how some projects work from a high level 
-        - mention the languages and technologies that connect these things 
-        - how do they flow? 
+    function insertAfter(referenceNode, newNode) {
+      referenceNode.parentNode.insertBefore(
+        newNode,
+        referenceNode.nextSibling
+      );
+    }
+  </script>
+  <script src="big.js"></script>
+  <script src="js/lazysizes.min.js"></script>
+</head>
 
-      - all the works are open source using open technologies 
-      
-      - have links for the more detailed code if people ask 
-    -->
-    <div>
-      <div>Participatory Mobile Music with Smartphones</div>
-      <div>
-        <em> Tate Carson, MM, MFA </em>
-      </div>
-      <notes
-        >in this presentation i'll be discussing four of my most recent
-        smartphone works from a research and artistic perspective. I'll talk
-        about each work individually but also the themes that tie them together.
-        And finally i'll discuss my plans future work and for involving students
-        in this research while at College of Charleston.</notes
-      >
-    </div>
+<body>
 
-    <div>
-      <h2>Themes</h2>
-      <ul>
-        <li>Ubiquitous computing</li>
-        <li>Audience participation</li>
-        <li>Networked distributed performance</li>
-        <li>Gamification of sound and music experiences</li>
-      </ul>
-      <notes>
-        How can we use smartphones in a collective way to bring people together
-        to make art and music? How can we use smartphones to encourage awareness
-        of nature?
-        <hr />
-        Expanded locations and times for performances, including any people
-        regardless of skill level using the ubiquitous smartphone as an
-        instrument allows for the breakdown between audience and performer.
-
-        <br />
-      </notes>
-    </div>
-    <div>
-      <img src="images/ampu.jpg" alt="a more perfect union" />
-
-      <div>A more perfect union (2017)</div>
-      <a href="https://ampu.site/" target="blank">https://ampu.site</a>
-
-      <notes
-        >A more perfect union is an experiment in participatory real-time
-        composing, where the audience chooses the outcome of the work by
-        evaluating the sounds they hear. The longer a person listens to a melody
-        the more likely an aspect of that melody persist in future generations.
-        The work is based on an evolutionary genetic algorithm, in which the
-        fittest sound of a group passes on its genes, combines with another fit
-        sound, and creates a new one with the best of both. The piece ends when
-        an emergent sound is found that should hopefully satisfy the
-        audience.</notes
-      >
-    </div>
-    <div>
-      <iframe
-        title="vimeo-player"
-        class="responsive-iframe azyload"
-        src="https://player.vimeo.com/video/267062963"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-      <notes
-        >This is a performance version of the work that took place at LSU Museum
-        of Art on March 4, 2018</notes
-      >
-    </div>
-    <div>
-      <div>Audience participation</div>
-      <notes
-        >I wanted to create a work that went beyond the idea of audience
-        participation by making the audience the sole creators of the work. Here
-        there is no audience performer divide, every participant is both the
-        audience and performer. The participants don't need any special skill to
-        be involved, they simply feed their preferences into the algorithm by
-        listening or skipping a melody. They don't need to know how the piece
-        works to appreciate its development.
-      </notes>
-    </div>
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="./images/amoreperfectunion/League_FtM_perf.jpg" alt="" />
-
-      <div>
-        The League of Automatic Music Composers (Perkis, Horton, and Bischoff,
-        left to right) performing at Ft. Mason, San Francisco 1981.
-        <br />
-      </div>
-      <em> photo: Peter Abramowitsch </em>
-
-      <notes
-        >A precursor to this concept of distributed control of a composition can
-        be found in the early computer networked music groups The League of
-        Automatic Music Composers and later The Hub. They created networks of
-        computers that would send messages to other computers to create a rich
-        texture of evolving sounds.
-      </notes>
-    </div>
-    <div>
-      <img
-        src="./images/amoreperfectunion/sims-galapagos.jpg"
-        alt="an image of Karl Sims' Galapagos installation"
-      />
-
-      <div>Karl Sims' Galapagos (1997)</div>
-      <em class="nowrap">photo: OHTAKA Takashi</em>
-      <notes>
-        Another important conceptual precursor to the work is Karl Sims' 1997
-        installation Galapagos. Sims' work consisted of several video screens,
-        each displaying a different virtual organism. The installation allowed
-        spectators to take part in evolving virtual organisms by choosing the
-        amount of time they spent in front of one video screen versus another.
-        The longer a viewer stood in front of a screen, the more he increased
-        the fitness of that virtual organism, and made it more likely for the
-        organism to pass its traits onto the next generation.
-      </notes>
-    </div>
-    <div>
-      <div class="nowrap">Previous distributed smartphone speaker systems:</div>
-      <div>
-        <ul>
-          <li class="nowrap">
-            Nexus (2013) - J. Allison, Y. Oh, and B. Taylor
-            <cite
-              >J. Allison, Y. Oh, and B. Taylor, “NEXUS: Collaborative
-              Performance for the Masses, Handling Instrument Interface
-              Distribution Through the Web,” in Proceedings of the International
-              Conference on New Interfaces for Musical Expression (NIME), 2013,
-              pp. 1–6.
-            </cite>
-          </li>
-          <li>
-            Fields (2015) - T. Shaw, S. Piquemal, and J. Bowers
-            <cite
-              >T. Shaw, S. Piquemal, and J. Bowers, “Fields: An Exploration into
-              the use of Mobile Devices as a Medium for Sound Diffusion,” in
-              Proceedings of the International Conference on New Interfaces for
-              Musical Expression, Baton Rouge, Louisiana, 2015, pp. 281–284.
-            </cite>
-          </li>
-          <li>
-            Crowd in C[loud] (2016) - S. W. Lee, A. Deusany de Carvalho Junior,
-            and G. Essl
-            <cite>
-              S. W. Lee, A. Deusany de Carvalho Junior, and G. Essl. Crowd in
-              C[loud] : Audience Participation Music with Online Dating Metaphor
-              using Cloud Service. Atlanta, USA, 2016.
-            </cite>
-          </li>
-          <li>
-            echobo (2013) - S. W. Lee and J. Freeman
-            <cite>
-              S. W. Lee and J. Freeman. echobo: A mobile music instrument
-              designed for audience to play. In Proceedings of the International
-              Conference on New Interfaces for Musical Expression, pages
-              450-455, Daejeon, Korea, 2013.
-            </cite>
-          </li>
-        </ul>
-      </div>
-      <notes>
-        Nexus[1] was one of the first distributed performance systems that used
-        a browser-based interface; it solved the prob- lem of cross-platform
-        distribution. Unlike similar systems, it incorporated a user interface
-        library, NexusUI, to aid in the rapid building and prototyping of user
-        interfaces.
-        <br />
-        Another signifcant work in the history of distributed music systems is
-        Fields[8]. The work is both a performance system and composition,
-        developed with the needs of the composition in mind. An important aspect
-        of Fields is its insistence on\using what's available." It does not
-        require the user to download software, but instead uses a web browser
-        for sound production, creating a more inclusive environment for audience
-        interaction. A more perfect union uses Rhizome[7], the web server
-        developed for Fields.
-        <br />
-        Other works related to A more perfect union, but less influential,
-        include Crowd in C[loud] [4], by Antonio Deusany de Carvalho Junior and
-        Sang Won Lee. This work allowed the audience to participate in the
-        performance through smartphones using cloud-based technology. Also,
-        echobo[5] by Sang Won Lee and Jason Freeman used audience participation
-        practices, but required the audience to download an application.
-      </notes>
-    </div>
-    <div>
-      Technical Design
-      <ul>
-        <li>Controller webpage</li>
-        <li>Server backend</li>
-        <li>Audience webpage</li>
-      </ul>
-
-      <notes
-        >The technical design of A more perfect union consists of three parts:
-        the controller webpage, the audience webpage and genetic algorithm, and
-        the server that connects the audience members' devices.
-
-        <br />
-        When an audience member stops a melody, the fitness function of that
-        melody is transmitted to all other audience members using Rhizome.
-        Amazon EC25, a cloud computing service, hosts the webpages and server.
-        Cloud computing is a cheaper alternative to traditional hosting
-        solutions because the hosting cost is based on time used during a
-        performance.
-
-        <br />
-
-        The controller webpage has buttons for starting and stopping the work.
-        There is a box to type in a duration for the performance, which allows
-        the controller to vary the running time for different performances.
-
-        <br />
-        The audience webpage is where the sound generation happens.
-      </notes>
-    </div>
-
-    <div
-      class="layout"
-      style="
-        grid-template-columns: repeat(4, 1fr);
-        grid-template-rows: repeat(5, 1fr);
-      "
-    >
-      <div style="grid-area: 1 / 1 / 3 / 6; justify-content: center">
-        <h1>Audience page</h1>
-      </div>
-      <div style="grid-area: 3 / 1 / 6 / 3">
-        <img src="images/amoreperfectunion/phone1.jpg" width="100%" alt="" />
-      </div>
-      <div style="grid-area: 3 / 3 / 6 / 5">
-        <ul>
-          <li>Sound generation - Web Audio API with Tone.js</li>
-          <li>User interface - NexusUI</li>
-          <li>Visualizations - p5.js</li>
-        </ul>
-      </div>
-
-      <notes>
-        When an audience member reaches the audience webpage, Tone.js, a
-        JavaScript framework for working with the Web Audio API, downloads and
-        prepares samples. The audience members control the starting and stopping
-        of sounds with a toggle switch from the interface library NexusUI. Each
-        sound is accompanied by a visualization of the melody currently being
-        heard; p5.js, a drawing library, displays the visualization.
-      </notes>
-    </div>
-
-    <!-- 
-    
-      <div>
-        Genetic Algorithm
-  
-        <ul>
-          <li>Genetic representation (genotype)</li>
-          <li>Evaluation ( fitness) function</li>
-          <li>Population structure</li>
-          <li>Selection method</li>
-          <li>Genetic operators</li>
-          <li>Replacement scheme</li>
-        </ul>
-  
-        <notes>
-          Genetic representation (genotype): An ar- ray of numbers that represents
-          the genes.
-          <br />
-          Evaluation ( tness) function: The means by which tness is evaluated;
-          operates on the phe- notype. Interactive selection is a type of tness
-          function that uses human judgment.
-          <br />
-          Population structure: A data structure con- taining the genotypes and
-          their corresponding tness values.
-          <br />
-          Selection method: The ttest genes of a pop- ulation have a higher
-          probability of passing on their traits.
-          <br />
-          Genetic operators: After the ttest parents are selected, two common
-          operators are applied{ crossover and mutation.
-          <br />
-  
-          Replacement scheme: How new genetic ma- terial is introduced into the
-          population.
-          <br />
-          In A more perfect union, the genetic representation is a random array of
-          numbers between 0 and 1, which gives the audience a neutral starting
-          point for evaluating melodies. The fitness function is interactive
-          fitness. The audience members decide the fitness of each sound by
-          toggling a switch to turn sounds on and off. The time each audience
-          member spends listening to a given melody determines its fitness score;
-          the longer they listen to that melody, the greater the fitness. Time
-          listened is used as a driver of the fitness function because it is
-          assumed that the longer someone listens to a given melody before moving
-          onto the next one, the more they liked that melody and the relationship
-          it had to the other ones happening at the same time. This method intends
-          to determine the group's idea of what a the composition should
-          ultimately sound like. Next, the population structure, a fixed array, is
-          filled with the genes.
-        </notes>
-      </div>
-      <div
-        class="layout"
-        style="grid-template-columns: 1fr; grid-template-rows: 75% 25%"
-      >
-        <img src="images/amoreperfectunion/fitnessDiagram.jpg" alt="" />
-  
-        <div>Fitness value data flow</div>
-  
-        <notes>
-          When an audience member turns o a sound, the selection method determines
-          which traits are passed on (See Figure 2). Sounds that have high fitness
-          values from other audience members create a mating pool of sound
-          choices. Sounds with a higher fitness values are pushed to the mating
-          pool more times, making them more likely to be selected and prioritizing
-          positive choices over negative ones. Two parents are then picked from
-          the mating pool at random.
-          <br />
-          The algorithm uses crossover and mutation as the genetic operators. The
-          crossover function creates a child from the two parents; this child is a
-          pseudo-random combination of both parents. Next, the algorithm applies
-          mutation to the genes. It picks a random gene and inserts a 0 or 1 into
-          a random index of the array; this makes certain that the gene pool will
-          not converge too quickly to one extreme or another. The phenotype is the
-          genotype mapped onto musical parameters so that the audience can
-          perceive the algorithm. Musical parameters used include tempo; sample
-          choice of metal, bell, marimba, pots and pans; sample tuning, restricted
-          to a predetermined scale; and sample rhythm.
-        </notes>
-      </div>
-    -->
-
-    <div>
-      Conclusions - What did I learn?
-      <ul>
-        <li>
-          The inner workings of the genetic algorithm are opaque to the
-          participants, more visualization could help.
-        </li>
-        <li>The work might be better as an installation.</li>
-        <li>No centralized database makes it difficult to keep state.</li>
-        <li>
-          There are more creative possibilities with rhythmic synchronization.
-        </li>
-      </ul>
-    </div>
-    <div class="nowrap">
-      <h1>Mesh Garden (2018)</h1>
-      <notes
-        >This piece is a sequencer made of distributed smartphones. The idea is
-        to allow a group of people in a relaxed situation to make a piece of
-        ambient music with their smartphones. I derive all the interactions with
-        the music from the orientation of the phones. The player makes one
-        motion, and it changes the piece then listens to the result. There is
-        not meant to be constant user interaction, more tuning the way you would
-        a stereo.</notes
-      >
-    </div>
-    <!-- 
-      TODO: background
-      TODO: conceptual ideas
-      TODO: tech used and how it changed from before 
-      TODO: something programming related? 
-    -->
-    <div>
-      <iframe
-        class="responsive-iframe azyload"
-        src="https://www.youtube.com/embed/_WQHdGdvO2E"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
-
-      <notes>
-        The work also has a gameplay aspect; if two players' phones match in
-        orientation, one player has the option to take the other player's note,
-        building up a bank of notes that will be used to form a melody.
-        <br />
-      </notes>
-    </div>
-    <div>
-      Background
-
-      <!-- 
-        <notes
-          >In addition to the smartphone speaker system works discussed before
-          Robaszkiewicz and Schnell's Drops and Paths works for their Soundworks
-          framework provide similar interactions to that of Mesh Garden.
-        </notes>
-      -->
-    </div>
-
-    <div>
-      Participatory performance as found in folk music
-      <blockquote>
-        <p>
-          a special type of artistic practice in which there are no
-          artist-audience distinctions, only participants and potential
-          participants performing different roles, and the primary goal is to
-          involve the maximum number of people in some performance role.
-        </p>
-        <cite>
-          T. Turino. Music as Social Life: The Politics of Participation.
-          Chicago Studies in Ethnomusicology. University of Chicago Press,
-          Chicago, 2008.
-        </cite>
-      </blockquote>
-      <div>-Thomas Turino</div>
-      <notes>
-        The most important aspect of this work is its allowance for
-        participatory performance. This type of performance has been found in
-        folk music traditions from around the world and much can be learned by
-        examining how music takes on an important social role when it is the
-        most participatory. In Music as Social Life musicologist Thomas Turino
-        de nes participatory performance as \a special type of artistic practice
-        in which there are no artist-audience distinctions, only participants
-        and potential participants performing different roles, and the primary
-        goal is to involve the maximum number of people in some performance role
-        [12]." Participatory performance can be contrasted with other elds of
-        performance practice, including "Presentational performance" music for
-        an audience, "high fidelity" recordings that are meant to be
-        representations of live music, and "studio audio art" or tape music.
-        These are not musical genres, but ways of making and consuming music.
-        Mesh Garden was designed with Turino's definition of participatory
-        performance in mind, so moving forward I will use the term "players"
-        instead of "audience" to refer to performance participants. Important to
-        the success of participatory performance is the capacity for people with
-        wide ranging abilities to participate. This ensures that new players
-        feel like they have something to contribute while experienced players
-        feel they have room to grow and improve. In future versions of Mesh
-        Garden, a feeling of flow might be improved by adding a mechanism for
-        testing the skill levels of some participants, musically or
-        strategically though the game. The work is built with a distributed
-        smartphone speaker system because many people have easy access to
-        smartphones. The work's intention is to recreate in our culture a
-        practice found in many smaller, tight-knit cultures in which everyone
-        can participate regardless of their level of musical ability. The
-        smartphones are an accessible platform for anyone to participate in
-        creating music. Because the work is web-based, the player doesn't need
-        an app to participate; players just go to the webpage and play. This
-        accessibility and ease of use is reminiscent of folk music traditions.
-      </notes>
-    </div>
-    <!-- 
   <div>
-    Creative-based music game
+    <div>Using Distributed Technology to Make Music in the time of the Attention Economy</div>
+    <div>
+      <em> Tate Carson, MM, MFA </em>
+    </div>
+    <notes></notes>
+  </div>
 
+  <div>Theoretical Background</div>
+
+  <div>Attention Economy</div>
+
+  <div>Ecological Awareness</div>
+
+  <div>Restorative Environments</div>
+
+  <div>Distributed Internet</div>
+
+  <div>Artistic Background</div>
+
+  <div>Soundwalking</div>
+
+  <div>GPS Soundwalks</div>
+
+  <div>Distributed Internet</div>
+
+  <div>Sonification</div>
+
+  <div>Previous work</div>
+
+  <div class="layout" style="grid-template-rows: 75% 25%">
+    <img src="images/nature3.jpg" alt="Sounds Aware" />
+
+    <div>Sounds Aware (2019) - Version 1</div>
+
+    <notes>Sounds Aware is a web application that runs on a smartphone and uses
+      machine learning to detect human-made sound (anthrophony) and masks it
+      with ambient music as a user walks around their environment. Though the
+      model is pre-trained with the author’s local environmental sounds, the
+      user can train the model further on their unique soundscape so that each
+      user gets a personalized experience. After the training process, the
+      user can listen to ambient music based on traits of the surrounding
+      anthrophony. If the app senses less anthrophony and more biophony or
+      geophony, then the music fades away, bringing the user’s attention to
+      the anthrophony.</notes>
+  </div>
+  <div class="layout">
+    <img src="images/soundsaware/walkingDog.jpg" alt="" />
+    <notes>The idea for Sounds Aware came while walking with dog Lucy around the
+      lakes by my house. When I first started walking her I would listen to
+      podcast or music on headphones for the entire walk because I found it
+      difficult to fill the time with my own thoughts. I would hear the sounds
+      of nature occasionally coming through my music and this made me want to
+      take the head phones out and just listen.</notes>
+  </div>
+  <div class="layout">
+    <img src="images/soundsaware/nature.jpg" alt="" />
+
+    <notes>The problem came when I tried to do that and realized there, while this
+      is a beautiful bit of nature, it is by peoples houses and some major
+      roads.</notes>
+  </div>
+
+  <div class="layout">
+    <img src="images/soundsaware/construction.jpg" alt="" />
+    <notes>So in addition the birds I could also hear the noise of lawnmowers,
+      home construction and cars driving by.</notes>
+  </div>
+  <div class="layout">
+    <video src="images/soundsaware/constructionVid.mp4" width="500px" controls></video>
+    <notes>And sometimes it sounds like this. This made me want the best of both
+      worlds. I wanted to create a system that would play music if it heard
+      'noise' and play nothing if it heard nothing. This I thought would help
+      me focus my attention more on nature and less on how much I didn't want
+      to hear the noise. This inspired Sounds Aware.</notes>
+  </div>
+  <div>
     <blockquote>
       <p>
-        For 'music', 1) the core gameplay activity must be predicated on
-        musical decision-making and 2) the player must be able to influence
-        the production of music through the direct use of game mechanics. For
-        'creative-based', 3) the player must plausibly be able to mentally
-        frame their use of the mechanics as having created new music in all
-        instances of play. For 'game', 4) an 'unnecessary obstacle' must be
-        enforced by an automated game mechanic, and 5) the player must 'exert
-        effort' to achieve a self-imposed 'aesthetic goal', the value of which
-        is mediated by their personal music bias, and for which the emotional
-        consequences' are both self-negotiated and 'optional'. Finally, 6) the
-        'game' must be apprehended as an activity rather than an object.
-        <cite>
-          T. Studley, R. Vella, N. Scott, and K. Nesbitt. A definition of
-          creative-based music games. In Proceedings of the Australasian
-          Computer Science Week Multiconference, page 42. ACM, 2018.
-        </cite>
+        To what extent might the technologies of communication, art and
+        entertainment serve as 'prostheses' that would provide us with
+        experiences of wilderness that would not only enrich our human
+        identity but help us to preserve and expand the domain of the
+        non-human world?
       </p>
+      <cite>
+        David Dunn. Wilderness as Reentrant Form: Thoughts on the Future of
+        Electronic Art and Nature. Leonardo, (4):377, 1988.
+      </cite>
     </blockquote>
-    <div>-T. Studley, R. Vella, N. Scott, and K. Nesbitt.</div>
+    <div>- David Dunn</div>
+
+    <notes> Composer David Dunn poses an inspirational question: </notes>
+  </div>
+  <div>
+    A goal of Sounds Aware is to shift attention to geophonic and biophonic
+    soundscape away from the anthrophonony.
+
     <notes>
-      Because one of the goals of Mesh Garden is to allow the greatest number
-      of people to participate, a musical game play framework is adopted. This
-      provides methods of interaction that allow any person to contribute
-      regardless of their musical ability. Players can explore the musical
-      space by changing the orientation of their phones and listening to the
-      sonic result. If a player wishes, they can place their phone on a table,
-      freezing the state of play, allowing them to listen to the results
-      without having to interact with the other players. There are many
-      examples and types of musical games, separated by their level of musical
-      control and skill. The gameplay mechanics of Mesh Garden are best
-      described using Thomas Studley's definition of creative-based musical
-      games:
+      The goal of Sounds Aware is to bring the user’s awareness to the
+      geophonic and biophonic soundscape, which is often so masked by noise
+      pollution that it has fallen out of awareness for many of us. Sounds
+      Aware seeks to shift the user’s concept of nature to something that has
+      no starting or end- ing point; it is all around us. The app brings
+      awareness by focusing attention on the environment. Because of the pre-
+      dominance of eye culture [3], our reliance on seeing rather than
+      listening as a primary means of sensing the world, it is a lot to ask of
+      a person who might be uninterested in acoustic ecology to “just listen”
+      to their environment. But, if you give them a tool that urges listening
+      in the quieter places, where the natural world will be more audible,
+      there is a better chance of them engaging with those sounds because the
+      app focused their perception. Sounds Aware is a means of technologically
+      mediated “ear cleaning,” as described by R. Murray Schafer in Ear
+      Cleaning: Notes for an Experimental Music Course [13].
     </notes>
   </div>
- -->
+  <div>
+    <div>Noise Pollution</div>
     <div>
-      <img src="images/mesh-garden/Guitar-GH3-hammeron.0.webp" alt="" />
-      <div>Guitar Hero</div>
-      <div class="credit">
-        <em> Photo: </em>
-        <a href="https://polygon.com">polygon.com</a>
-      </div>
-      <notes>
-        You may think that this sounds similar to games like Guitar Hero but
-        that would be considered mimicry, the object being recreation of music
-        not the creation of something new. Thomas Studley gives a definition of
-        creative-based musical games that requires the games to create some sort
-        of new music, not just mimic as in karaoke.
-      </notes>
+      <ul>
+        <li>
+          There is overwhelming evidence that exposure to environmental noise
+          has adverse effects on the health of the population.<cite>World Health Organization, Burden of disease from
+            environmental
+            noise: Quantification of healthy life years lost in Europe. World
+            Health Organization. Regional Office for Europe, 2011.
+          </cite>
+        </li>
+        <li>
+          Sounds Aware will make users more aware of how much harmful noise
+          they experience in their daily lives.
+        </li>
+      </ul>
     </div>
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="images/mesh-garden/instantcity_play.jpg" alt="" />
-      <div>
-        <div style="font-size: 1.5em">Instant City (2003-2006)</div>
-        <div class="credit">
-          <em>Photo:</em>
-          <a href="http://www.hauert-reichmuth.ch/en/projekte/instant-city/"
-            >http://www.hauert-reichmuth.ch/en/projekte/instant-city/</a
-          >
-        </div>
-      </div>
-      <notes
-        >Many music games exist that fulfill all or part of Studley's definition
-        for creative-based music games. Instant City1 is a music-building table
-        game created by Sibylle Hauert and Daniel Reichmuth in collaboration
-        with Volker Bohm. Players stack blocks on top of each other to create
-        music. Mesh Garden is inspired by the ambient gameplay aspect of this
-        work. Instant City has no specific gameplay or aesthetic goal; the
-        gameplay mode is exploratory. While being an impressive project, it is
-        not very accessible as it requires a unique light table to read where
-        the blocks are positioned.
-      </notes>
-    </div>
+    <notes>A 2011 World Health Organization (WHO) report found that “there is
+      overwhelming evidence that exposure to environmental noise has adverse
+      effects on the health of the population [10].” Sounds Aware shifts a
+      users attention away from noise pollution and to nature, which may help
+      mitigate adverse health effects caused by noise pollution.
+      <br />
+      While a reduction in environmental noise at the source would be the best
+      way to solve noise pollution, masking the noise is a stopgap solution. A
+      masking solution has been implemented by several projects [9, 15] but
+      not yet with a mobile device. Sounds Aware implements a similar idea but
+      with a mobile phone.
+    </notes>
+  </div>
 
+
+  <div>
     <div>
-      <img src="images/mesh-garden/Reactable_Multitouch.jpg" width="1000px""
-      alt="" />
-      <div>
-        reacTable - Music Technology Group - Universitat Pompeu Fabra in
-        Barcelona, Spain
-      </div>
-      <div><em>Photo: Daniel Williams</em></div>
-      <notes>
-        The reacTable[7] is another inspiration for Mesh Garden. It is an
-        instrument with a tabletop user interface that allows players to create
-        music by moving physical objects on top of a screen to manipulate
-        musical parameters. Again, the non- portability of the table interface
-        renders this inaccessible to a large group of people. The intention with
-        Mesh Garden is to create something similar to these pieces, but using
-        the all-pervasive and accessible smartphone.
-      </notes>
+      <ul>
+        <li>
+          Stress reduction can be aided by the experience of the natural
+          environment by providing a ‘restorative environment’ that reduces
+          the fatigue caused by directed attention.<cite>Stephen. Kaplan, “The restorative benefits of nature: toward an
+            integrative framework.,” In: Journal of Environmental Psychology.,
+            vol. 15, pp. 169–182, 1995.
+          </cite>
+        </li>
+        <li>
+          Bird sounds may provide restorative benefits.<cite>E. Ratcliffe, B. Gatersleben, and P. T. Sowden, “Bird
+            sounds and
+            their contributions to perceived attention restoration and stress
+            recovery,” Journal of Environmental Psychology, vol. 36, pp.
+            221–228, 2013.
+          </cite>
+        </li>
+      </ul>
     </div>
+    <notes>Psychologist Stephen Kaplan found that stress reduction can be aided by
+      the experience of the natural environment by providing a ‘restorative
+      environment’ that reduces the fatigue caused by directed attention [8].
+      Kaplan did not mention sound directly, but a recent study by Eleanor
+      Ratcliffe et al [12] has extended his research to show that certain bird
+      sounds may provide restorative benefits.</notes>
+  </div>
+
+  <div>
+    <div>R. Murray Schafer's Soundscape</div>
     <div>
-      <div>Interactions</div>
+      <ul>
+        <li>rural landscape - hi-fi</li>
+        <li>urban landscape - lo-fi</li>
+      </ul>
+    </div>
+    <notes>R. Murray Schafer suggests that we should listen to the environment as
+      a musical composition. He describes urban and rural soundscapes as lo-fi
+      and hi-fi. A rural landscape is hi-fi because there is a low noise level
+      and allows one to hear more clearly. When in lo-fi (urban) soundscapes
+      we are deal- ing with a lot of sound masking and getting less
+      discernible aural information [14]. Sounds Aware brings attention to
+      that urban noise by masking it with music, possibly reducing its
+      negative effects as described by the WHO report [10]. The music of
+      Sounds Aware and Schafer’s ‘environment as musical composition’ combine
+      as a duet to create a new un- heard work.</notes>
+  </div>
 
-      <notes>
-        The interactions of Mesh Garden are designed to be intuitive for a
-        non-musically trained player to use. Using the smartphone's compass, the
-        piece allows the player to interact with the sounds. A player interacts
-        by turning their phone, which affects two different parts of the work.
-      </notes>
-    </div>
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="images/mesh-garden/mesh garden player interaction.jpg" alt="" />
-      <div>Relative axis compass interaction</div>
-      <notes>
-        <br />
-        One aspect is turning on the relative axis. When the player logs on,
-        their forward-facing position is registered to be zero degrees, which
-        will produce the default sounds. Then, by turning the phone 90 degrees,
-        180 degrees, and 270 degrees, the player can pick between four different
-        pre- determined note options and rhythmic options made up of four
-        different Euclidian rhythmic patterns. The rhythmic patterns are
-        randomized for each player when they log on, but do not change after
-        this point. Therefore, the player should be able to tell one pattern
-        from another and use their musical intuition to choose the pattern that
-        best ts musically.
-        <br />
-        To control the long bowed sound, the player can decide what order the
-        line is played through. The choices are up, down, drunk, and random. The
-        rhythm is based on the same Euclidian rhythms that determine onsets.
-      </notes>
-    </div>
 
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="images/mesh-garden/matching.jpg" alt="" />
-      <div>Compass heading matching</div>
-      <notes>
-        The more active game play aspect of Mesh Garden is the compass heading
-        matching feature. When a player matches with the headings of another
-        player, the player that was moving last plays an unsynchronized melody.
-        To tell if two phones are facing towards each other, the compass head-
-        ings are compared. The absolute compass values are used instead of the
-        relative orientation data of the other section. Each phone's heading is
-        determined using the kompas npm library, then each heading is sent to
-        the server. On the server, the headings are continually compared with
-        each other. If the dierence between one player's head- ing and another's
-        is 180 degrees, then the phones are facing each other. Once a match is
-        found between two phones, a sound plays on one of the phones. The sound
-        is one note of a melody that comes from a bank of pre-selected notes.
-        This player then has the chance to take the note of the phone it matched
-        with and add that note to its bank of notes. The phone that lost its
-        note can then try to match with other phones to add their notes and
-        build up its own melody. Since notes only get traded back and forth be-
-        tween phones, they are never totally lost, rendering more of a creative
-        orchestration between distributed devices.
-      </notes>
-    </div>
-    <div>
-      <div>Rhythmic synchronization with Ableton Link</div>
-
-      <notes>
-        Link is a technology developed by Ableton that allows any computers
-        running Live to play in sync with each other. Because Link is open
-        sourced, it is possible to use it in non- Live applications [2]. The
-        Link API is in C++, a language not suitable for the web; so, to run Link
-        in the web, I had to use a Node.js port, node-abletonlink, created by
-        GitHub user 2bbb. This project ports the C++ Link implementation to
-        Node.js to allow its use in the browser. Because of platform specific
-        installation issues, Docker was needed to deploy Mesh Garden to a Linux
-        server. I used Docker to ensure that the development and deployment
-        environment were identical. By default, node-ableton link provides time
-        based synchronization between devices but does not ensure that the
-        synchronization is in metrical, musical time. Notes will all play at the
-        same time, but the tempo will fluctuate due to network latency. To x
-        this problem, I use the Trans- port system in Tone.js. When a player
-        joins Mesh Garden, their device's rhythmic transport starts, giving
-        their device a musically metronomic time clock. When a new player logs
-        on, the system stops each of the other players trans- ports and then
-        immediately restarts them, ensuring that all players stay in sync. I
-        also use metrical quantization of time values in Tone.js to ensure that
-        metronomic variation will be smoothed out by quantization on a
-        synchronized clock. Used together, these methods create a successful
-        distributed sequencer that works even with devices on separate networks.
-      </notes>
-    </div>
-    <div>
-      <div>What did I learn?</div>
-      <div>
-        <ul>
-          <li>Synchronization is difficult but useful</li>
-          <li>Game dynamics open possibilities for participation</li>
-          <li>
-            Creating an avenue for players with greater music skill levels will
-            take more advances in user interface design
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="images/nature3.jpg" alt="Sounds Aware" />
-
-      <div>Sounds Aware (2019)</div>
-
-      <notes
-        >Sounds Aware is a web application that runs on a smartphone and uses
-        machine learning to detect human-made sound (anthrophony) and masks it
-        with ambient music as a user walks around their environment. Though the
-        model is pre-trained with the author’s local environmental sounds, the
-        user can train the model further on their unique soundscape so that each
-        user gets a personalized experience. After the training process, the
-        user can listen to ambient music based on traits of the surrounding
-        anthrophony. If the app senses less anthrophony and more biophony or
-        geophony, then the music fades away, bringing the user’s attention to
-        the anthrophony.</notes
-      >
-    </div>
-    <div class="layout">
-      <img src="images/soundsaware/walkingDog.jpg" alt="" />
-      <notes
-        >The idea for Sounds Aware came while walking with dog Lucy around the
-        lakes by my house. When I first started walking her I would listen to
-        podcast or music on headphones for the entire walk because I found it
-        difficult to fill the time with my own thoughts. I would hear the sounds
-        of nature occasionally coming through my music and this made me want to
-        take the head phones out and just listen.</notes
-      >
-    </div>
-    <div class="layout">
-      <img src="images/soundsaware/nature.jpg" alt="" />
-
-      <notes
-        >The problem came when I tried to do that and realized there, while this
-        is a beautiful bit of nature, it is by peoples houses and some major
-        roads.</notes
-      >
-    </div>
-
-    <div class="layout">
-      <img src="images/soundsaware/construction.jpg" alt="" />
-      <notes
-        >So in addition the birds I could also hear the noise of lawnmowers,
-        home construction and cars driving by.</notes
-      >
-    </div>
-    <div class="layout">
-      <video
-        src="images/soundsaware/constructionVid.mp4"
-        width="500px"
-        controls
-      ></video>
-      <notes
-        >And sometimes it sounds like this. This made me want the best of both
-        worlds. I wanted to create a system that would play music if it heard
-        'noise' and play nothing if it heard nothing. This I thought would help
-        me focus my attention more on nature and less on how much I didn't want
-        to hear the noise. This inspired Sounds Aware.</notes
-      >
-    </div>
-    <div>
-      <blockquote>
-        <p>
-          To what extent might the technologies of communication, art and
-          entertainment serve as 'prostheses' that would provide us with
-          experiences of wilderness that would not only enrich our human
-          identity but help us to preserve and expand the domain of the
-          non-human world?
-        </p>
-        <cite>
-          David Dunn. Wilderness as Reentrant Form: Thoughts on the Future of
-          Electronic Art and Nature. Leonardo, (4):377, 1988.
-        </cite>
-      </blockquote>
-      <div>- David Dunn</div>
-
-      <notes> Composer David Dunn poses an inspirational question: </notes>
-    </div>
-    <div>
-      A goal of Sounds Aware is to shift attention to geophonic and biophonic
-      soundscape away from the anthrophonony.
-
-      <notes>
-        The goal of Sounds Aware is to bring the user’s awareness to the
-        geophonic and biophonic soundscape, which is often so masked by noise
-        pollution that it has fallen out of awareness for many of us. Sounds
-        Aware seeks to shift the user’s concept of nature to something that has
-        no starting or end- ing point; it is all around us. The app brings
-        awareness by focusing attention on the environment. Because of the pre-
-        dominance of eye culture [3], our reliance on seeing rather than
-        listening as a primary means of sensing the world, it is a lot to ask of
-        a person who might be uninterested in acoustic ecology to “just listen”
-        to their environment. But, if you give them a tool that urges listening
-        in the quieter places, where the natural world will be more audible,
-        there is a better chance of them engaging with those sounds because the
-        app focused their perception. Sounds Aware is a means of technologically
-        mediated “ear cleaning,” as described by R. Murray Schafer in Ear
-        Cleaning: Notes for an Experimental Music Course [13].
-      </notes>
-    </div>
-    <div>
-      <div>Noise Pollution</div>
-      <div>
-        <ul>
-          <li>
-            There is overwhelming evidence that exposure to environmental noise
-            has adverse effects on the health of the population.<cite
-              >World Health Organization, Burden of disease from environmental
-              noise: Quantification of healthy life years lost in Europe. World
-              Health Organization. Regional Office for Europe, 2011.
-            </cite>
-          </li>
-          <li>
-            Sounds Aware will make users more aware of how much harmful noise
-            they experience in their daily lives.
-          </li>
-        </ul>
-      </div>
-      <notes
-        >A 2011 World Health Organization (WHO) report found that “there is
-        overwhelming evidence that exposure to environmental noise has adverse
-        effects on the health of the population [10].” Sounds Aware shifts a
-        users attention away from noise pollution and to nature, which may help
-        mitigate adverse health effects caused by noise pollution.
-        <br />
-        While a reduction in environmental noise at the source would be the best
-        way to solve noise pollution, masking the noise is a stopgap solution. A
-        masking solution has been implemented by several projects [9, 15] but
-        not yet with a mobile device. Sounds Aware implements a similar idea but
-        with a mobile phone.
-      </notes>
-    </div>
-
-    <!-- 
-      <div>
-        <div>
-          <ul>
-            <li>
-              Stress reduction can be aided by the experience of the natural
-              environment by providing a ‘restorative environment’ that reduces
-              the fatigue caused by directed attention.<cite
-                >Stephen. Kaplan, “The restorative benefits of nature: toward an
-                integrative framework.,” In: Journal of Environmental Psychology.,
-                vol. 15, pp. 169–182, 1995.
-              </cite>
-            </li>
-            <li>
-              Bird sounds may provide restorative benefits.<cite
-                >E. Ratcliffe, B. Gatersleben, and P. T. Sowden, “Bird sounds and
-                their contributions to perceived attention restoration and stress
-                recovery,” Journal of Environmental Psychology, vol. 36, pp.
-                221–228, 2013.
-              </cite>
-            </li>
-          </ul>
-        </div>
-        <notes
-          >Psychologist Stephen Kaplan found that stress reduction can be aided by
-          the experience of the natural environment by providing a ‘restorative
-          environment’ that reduces the fatigue caused by directed attention [8].
-          Kaplan did not mention sound directly, but a recent study by Eleanor
-          Ratcliffe et al [12] has extended his research to show that certain bird
-          sounds may provide restorative benefits.</notes
-        >
-      </div>
-    
-        <div>
-      <div>R. Murray Schafer's Soundscape</div>
-      <div>
-        <ul>
-          <li>rural landscape - hi-fi</li>
-          <li>urban landscape - lo-fi</li>
-        </ul>
-      </div>
-      <notes
-        >R. Murray Schafer suggests that we should listen to the environment as
-        a musical composition. He describes urban and rural soundscapes as lo-fi
-        and hi-fi. A rural landscape is hi-fi because there is a low noise level
-        and allows one to hear more clearly. When in lo-fi (urban) soundscapes
-        we are deal- ing with a lot of sound masking and getting less
-        discernible aural information [14]. Sounds Aware brings attention to
-        that urban noise by masking it with music, possibly reducing its
-        negative effects as described by the WHO report [10]. The music of
-        Sounds Aware and Schafer’s ‘environment as musical composition’ combine
-        as a duet to create a new un- heard work.</notes
-      >
-    </div>
-    -->
-
-    <div>
-      <div>Audio Walks</div>
-      <blockquote>
-        <p>
-          experiments and works that combine walking and listening to a mediated
-          soundscape over headphones.
-          <cite
-            >J. Steindorf. Walk-Along with a Mediated Presence: The Audio Walk
-            as a Mobile Method. Wi: Journal of Mobile Media, 2017.</cite
-          >
-        </p>
-      </blockquote>
-      <div>- Johanna Steindorf</div>
-      <notes>
-        Sounds Aware is further classified as an audio walk because it is a
-        soundwalk mediated by technology. Johanna Steindorf describes audio
-        walks as “experiments and works that combine walking and listening to a
-        mediated sound- scape over headphones [16].” That an audio walk takes
-        place using headphones is important because it adds “a second layer of
-        private sound to any place and situation, there- fore transforming or
-        enhancing the current spatial experience [16].” Sounds Aware mediates
-        the public space through remediation of noise. The unique part of this
-        audio walk is that the user is meant to be more aware when the composed
-        ambient music is off. It is almost like a negative audio walk.
-      </notes>
-    </div>
-    <div>Related Work</div>
-    <div
-      class="layout"
-      style="
+  <div>
+    <div>Audio Walks</div>
+    <blockquote>
+      <p>
+        experiments and works that combine walking and listening to a mediated
+        soundscape over headphones.
+        <cite>J. Steindorf. Walk-Along with a Mediated Presence: The Audio Walk
+          as a Mobile Method. Wi: Journal of Mobile Media, 2017.</cite>
+      </p>
+    </blockquote>
+    <div>- Johanna Steindorf</div>
+    <notes>
+      Sounds Aware is further classified as an audio walk because it is a
+      soundwalk mediated by technology. Johanna Steindorf describes audio
+      walks as “experiments and works that combine walking and listening to a
+      mediated sound- scape over headphones [16].” That an audio walk takes
+      place using headphones is important because it adds “a second layer of
+      private sound to any place and situation, there- fore transforming or
+      enhancing the current spatial experience [16].” Sounds Aware mediates
+      the public space through remediation of noise. The unique part of this
+      audio walk is that the user is meant to be more aware when the composed
+      ambient music is off. It is almost like a negative audio walk.
+    </notes>
+  </div>
+  <div>Related Work</div>
+  <div class="layout" style="
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(5, 1fr);
         grid-column-gap: 11px;
-      "
-    >
-      <div style="grid-area: 1 / 1 / 3 / 7">
-        The Quiet Walk - Alessandro Altavilla and Atau Tanaka
-      </div>
-      <img
-        style="grid-area: 3 / 1 / 6 / 4"
-        src="images/soundsaware/TQW-MapsOnApp-620x348.jpg"
-        alt=""
-      />
-      <img
-        style="grid-area: 3 / 4 / 6 / 7"
-        src="images/soundsaware/TQW-MobileAppInUse-620x348.jpg"
-        alt=""
-      />
-      <notes>
-        The Quiet Walk [1], by Alessandro Altavilla and Atau Tanaka, is locative
-        audio walk artwork for explorations of the urban landscape, where the
-        goal is to find the quietest place in an urban location. The app
-        notifies users if the surrounding sounds are too high. It also records
-        the GPS locations of quiet places that are found so that the user can
-        view a sound map of their walk.
-      </notes>
+      ">
+    <div style="grid-area: 1 / 1 / 3 / 7">
+      The Quiet Walk - Alessandro Altavilla and Atau Tanaka
     </div>
-    <div class="layout" style="grid-template-rows: 25% 75%">
-      <div>Ambient Walk - Chen, Bowers, Durrant</div>
-      <div>
-        <img src="images/soundsaware/ambientWalk.jpg" alt="" />
-      </div>
-      <notes>
-        Chen, Bowers, Durrant created Ambient Walk [4], a mobile application
-        that encourages mindful walking through sonification of biophysical
-        data. The app plays ambient music dependent on users breathing patterns
-        and the pace of walking. The authors intend for the music to keep a user
-        aware of their ‘balancing status’ between walking and breathing. The
-        intentions of Ambient Walk are very similar to Sounds Aware, though its
-        intention is to raise the user’s awareness of one’s own
-        mindfulness,instead of the soundscape.
-      </notes>
-    </div>
-
-    <!-- 
-      <div>
-        <div>User Interaction</div>
-  
-        <notes>
-          Sounds Aware is accessed by going to https://walking. netlify.com in a
-          web browser on a smartphone. It requires Internet access to download the
-          default data set. After that, the app will work offline, so it is
-          appropriate for various net- work conditions. Headphones are required so
-          that the microphone on the phone does not pick up the music playback.
-          Headphones with a microphone are preferred so that if the user wants,
-          they can put their phone in their pocket while walking.
-  
-          <br />
-          When a user first opens the application, they will see it guess the
-          surrounding sounds based on a pre-trained data set. When assured that
-          the microphone is working, the user can then start the music by clicking
-          the toggle switch (see Figure 1a). The music now responds to what the
-          surrounding sounds. The user can adjust the listening sensitivity of the
-          microphone to their liking to match the acoustic environment if it is
-          particularly quiet or noisy. After testing the success of the system in
-          interpreting the user’s environment, the user can now add their own
-          training data (see Figure 1b). For this, the user will select a sound
-          category such as a car. Then the user will wait for a car to drive by
-          and then record it by clicking the record toggle. This will make the
-          system more accurate in listening to the user’s specific environment.
-          Users are not currently able to add their own sound category tags.
-        </notes>
-      </div>
-    
-    -->
-
-    <!-- 
-    
-    -->
+    <img style="grid-area: 3 / 1 / 6 / 4" src="images/soundsaware/TQW-MapsOnApp-620x348.jpg" alt="" />
+    <img style="grid-area: 3 / 4 / 6 / 7" src="images/soundsaware/TQW-MobileAppInUse-620x348.jpg" alt="" />
+    <notes>
+      The Quiet Walk [1], by Alessandro Altavilla and Atau Tanaka, is locative
+      audio walk artwork for explorations of the urban landscape, where the
+      goal is to find the quietest place in an urban location. The app
+      notifies users if the surrounding sounds are too high. It also records
+      the GPS locations of quiet places that are found so that the user can
+      view a sound map of their walk.
+    </notes>
+  </div>
+  <div class="layout" style="grid-template-rows: 25% 75%">
+    <div>Ambient Walk - Chen, Bowers, Durrant</div>
     <div>
-      <div>Design</div>
-      <div>
-        <ul>
-          <li>Tone.js</li>
-        </ul>
-      </div>
-      <notes
-        >Sounds Aware is built with Tone.js, a Web Audio API framework. There
-        are a few downsides to web-based apps, such as cross-browser
-        compatibility issues with microphone input, but a web app was chosen
-        because a user might be more likely to try it if they do not have to
-        download an app.</notes
-      >
+      <img src="images/soundsaware/ambientWalk.jpg" alt="" />
     </div>
+    <notes>
+      Chen, Bowers, Durrant created Ambient Walk [4], a mobile application
+      that encourages mindful walking through sonification of biophysical
+      data. The app plays ambient music dependent on users breathing patterns
+      and the pace of walking. The authors intend for the music to keep a user
+      aware of their ‘balancing status’ between walking and breathing. The
+      intentions of Ambient Walk are very similar to Sounds Aware, though its
+      intention is to raise the user’s awareness of one’s own
+      mindfulness,instead of the soundscape.
+    </notes>
+  </div>
 
+  <div>
+    <div>Design</div>
     <div>
-      <div>Data Tags</div>
-      <div>
-        <ul>
-          <li>Geophony - wind, other weather, rain</li>
-          <li>Anthrophony - cars, construction, human speech, AC, airplanes</li>
-          <li>Biophony - insects, birds, large animal</li>
-        </ul>
-      </div>
-      <notes
-        >Each user starts off with an author-defined database of tagged sounds.
-        To create this database each recording made was tagged (see Table 1)
-        with a general sound category. Those sounds were then placed into
-        broader categories of origin. This allowed the composition to treat
-        sounds from different sources—geophony, anthrophony, and biophony—
-        differently.
-      </notes>
-    </div>
-
-    <div>
-      <div>Machine listening</div>
       <ul>
-        <li>Meyda.js - <a href="http://meydajs.org">http://meydajs.org</a></li>
+        <li>Tone.js</li>
       </ul>
-      <notes
-        >The app uses machine learning to identify sounds. The al- gorithm used
-        is k-nearest neighbor. A Mel-Frequency Cep- stral Coefficients (MFCC)
-        audio feature was used to com- pare sounds, implemented by Meyda.js1 , a
-        JavaScript fea- ture extraction library. Using Meyda.js allowed the
-        process- ing to be done on the client, allowing Sounds Aware to work
-        offline when necessary.</notes
-      >
     </div>
+    <notes>Sounds Aware is built with Tone.js, a Web Audio API framework. There
+      are a few downsides to web-based apps, such as cross-browser
+      compatibility issues with microphone input, but a web app was chosen
+      because a user might be more likely to try it if they do not have to
+      download an app.</notes>
+  </div>
 
+  <div>
+    <div>Data Tags</div>
     <div>
-      <div>Composition</div>
-      <div>
-        <ul>
-          <li>Influenced by ambient music</li>
-          <li>Influenced by Aeolian practices</li>
-          <li>
-            Tuned using La Monte Young's just intonation Well-Tuned Piano tuning
-          </li>
-        </ul>
-      </div>
-
-      <notes
-        >The musical composition of Sounds Aware is influenced by ambient music.
-        Synthesized sounds were used that would not be too jarring to jump in
-        and out of and did not have an obvious beginning or ending. This type of
-        synthesized sound blends in with the surrounding acoustic environment as
-        a composition. The synthesized sounds are simple frequency modulation
-        synthesis with reverb and delay effects. They are tuned to just
-        intervals so they are more likely to coincide with tunings in nature,
-        influenced by Aeolian practices [2] and La Monte Young [6].</notes
-      >
-    </div>
-
-    <div class="layout" style="grid-template-rows: 25% 75%">
-      <div>Mapping</div>
-      <div>
-        <img src="images/soundsaware/compDesign.svg" alt="" />
-      </div>
-
-      <notes>
-        The app maps the loudness of the acoustic environment to the amplitude
-        of the ambient composition (see Figure 2). The previous 200 loudness
-        values are averaged and the am when a user was moving. If they had been
-        added to the anthrophony the system would only work if the user was
-        still and silent; this was a trade-off to allow for user mobil- ity,
-        allowing them to find various soundscapes. More data plitude ramps to a
-        given value over one second for signal smoothing. If Sounds Aware hears
-        an anthrophonic sound, the amplitude is faded up to -3 dB. If it hears a
-        geophonic sound, the amplitude of the geophonic sound is mapped onto the
-        synthesized sounds amplitude, creating a wind chime ef- fect. Geophonic
-        sounds also affect the modulation index and harmonicity of the frequency
-        modulation synthesis, cre- ating a variety of timbres depending on the
-        character of the current external soundscape. If a biophonic sound is
-        recog- nized, the amplitude of the ambient wash is faded down to -59 dB,
-        which is perceptibly silent when listened to in an urban environment.
-      </notes>
-    </div>
-
-    <div>
-      <div>What did I learn?</div>
       <ul>
-        <li>The app would be more useful with user accounts.</li>
+        <li>Geophony - wind, other weather, rain</li>
+        <li>Anthrophony - cars, construction, human speech, AC, airplanes</li>
+        <li>Biophony - insects, birds, large animal</li>
+      </ul>
+    </div>
+    <notes>Each user starts off with an author-defined database of tagged sounds.
+      To create this database each recording made was tagged (see Table 1)
+      with a general sound category. Those sounds were then placed into
+      broader categories of origin. This allowed the composition to treat
+      sounds from different sources—geophony, anthrophony, and biophony—
+      differently.
+    </notes>
+  </div>
+
+  <div>
+    <div>Machine listening</div>
+    <ul>
+      <li>Meyda.js - <a href="http://meydajs.org">http://meydajs.org</a></li>
+    </ul>
+    <notes>The app uses machine learning to identify sounds. The al- gorithm used
+      is k-nearest neighbor. A Mel-Frequency Cep- stral Coefficients (MFCC)
+      audio feature was used to com- pare sounds, implemented by Meyda.js1 , a
+      JavaScript fea- ture extraction library. Using Meyda.js allowed the
+      process- ing to be done on the client, allowing Sounds Aware to work
+      offline when necessary.</notes>
+  </div>
+
+  <div>
+    <div>Composition</div>
+    <div>
+      <ul>
+        <li>Influenced by ambient music</li>
+        <li>Influenced by Aeolian practices</li>
         <li>
-          User training of the machine learning algorithm directly on the phone
-          is not accurate enough to understand more than a few sounds but might
-          be viable in the future.
+          Tuned using La Monte Young's just intonation Well-Tuned Piano tuning
         </li>
       </ul>
     </div>
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="images/immaterialcloud1.jpg" alt="immaterial.cloud" />
 
-      <div>immaterial.cloud (2020)</div>
-      <notes>
-        <!-- TODO: get parts from the paper, they're more update -->
-        immaterial.cloud is an immersive audiovisual installation that explores
-        a possible networked future of peer-to-peer technologies, away from the
-        cloud. Participants experience the work via two to four smartphones
-        placed in different locations in a room. As participants walk up to a
-        phone, they see a representation of themselves through data. If the
-        participant gets close enough, the phone triggers a change in the sound
-        of immaterial.cloud and the other phones follow.
-      </notes>
-    </div>
-    <!-- 
-      TODO: background
-      TODO: conceptual ideas
-      TODO: tech used and how it changed from before 
-      TODO: something programming related? 
-    -->
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img src="images/immaterialcloud2.png" alt="immaterial.cloud" />
-      <div>Visualizations of participants interacting with the work</div>
-      <notes>
-        immaterial.cloud creates the opportunity for a shared space with
-        participants by using technology in a collective way. It requires the
-        phones to act together, and out of their hands, not as individuals as is
-        usual in this era of personalized devices. Experiencing immaterial.cloud
-        presents an opportunity for a restoration of attention that might have
-        been lost by an overuse of technology in the typical way.
+    <notes>The musical composition of Sounds Aware is influenced by ambient music.
+      Synthesized sounds were used that would not be too jarring to jump in
+      and out of and did not have an obvious beginning or ending. This type of
+      synthesized sound blends in with the surrounding acoustic environment as
+      a composition. The synthesized sounds are simple frequency modulation
+      synthesis with reverb and delay effects. They are tuned to just
+      intervals so they are more likely to coincide with tunings in nature,
+      influenced by Aeolian practices [2] and La Monte Young [6].</notes>
+  </div>
 
-        <br />
-
-        The concept for immaterial.cloud emerged as a way to create a communal
-        experience during the COVID-19 shelter-in-place orders in which many
-        people have turned to the internet for communication and entertainment.
-        While social networks such as Facebook or Google seek our attention for
-        profit, [immaterial.cloud](http://immaterial.cloud) seeks a deep
-        attention that creates a shared sense of place and time for the
-        participants.
-      </notes>
-    </div>
+  <div class="layout" style="grid-template-rows: 25% 75%">
+    <div>Mapping</div>
     <div>
-      <div>Technical Description</div>
-      <ul>
-        <li>Peer-to-peer networking</li>
-        <li>WebRTC</li>
-        <li>IPFS</li>
-        <li>Motion tracking</li>
-      </ul>
-      <notes>
-        [immaterial.cloud](http://immaterial.cloud) is a web application that
-        uses peer-to-peer technologies to send data between phones without the
-        need for an intermediary server. The [PeerJS](https://peerjs.com/)
-        library is used to manage WebRTC connections to send data between
-        phones. The application is hosted on [IPFS](https://ipfs.io/), a
-        peer-to-peer hypermedia protocol, which removes the need for centralized
-        server hosting. The participant interaction of waving a hand around in
-        front of a phone to trigger changes is accomplished by using the phone's
-        onboard camera and tracking motion. Each phone is assigned an ID along
-        with one of four samples and presets so that when a participant waves in
-        front of one specific phone it will have a predictable outcome.
-      </notes>
-    </div>
-    <div class="layout" style="grid-template-rows: 75% 25%">
-      <img
-        src="images/immaterialcloud/qi5jxtMLvuyjoAfMFJ6onDzEUQptFfu8cggWfDfms3Q.png"
-        alt=""
-      />
-      <a href="https://immaterial.cloud" target="blank"
-        >https://immaterial.cloud</a
-      >
-
-      <notes>
-        This work needs 2-4 smartphones (iPhone or Android) connected to the
-        internet via WiFi or a cellular network. All sound during the
-        installation is played over the phones. A participant joins the network
-        by going to <https://immaterial.cloud> and entering the ID of a chosen
-        "host" phone. No extra software is required to participate.
-        immaterial.cloud will work with a group of participants or just one.
-      </notes>
+      <img src="images/soundsaware/compDesign.svg" alt="" />
     </div>
 
-    <div>
-      <iframe
-        title="vimeo-player"
-        class="responsive-iframe azyload"
-        src="https://player.vimeo.com/video/414630388"
-        frameborder="0"
-        allowfullscreen
-      ></iframe>
-    </div>
-    <div>
-      <div>Future Work</div>
-      <ul>
-        <li>New modes of interaction</li>
-        <li>Distributed systems</li>
-        <li>Machine learning for environmental sounds on mobile devices</li>
-        <li>Physical modeling in the browser with Faust</li>
-        <li>Involving students in research</li>
-      </ul>
-    </div>
+    <notes>
+      The app maps the loudness of the acoustic environment to the amplitude
+      of the ambient composition (see Figure 2). The previous 200 loudness
+      values are averaged and the am when a user was moving. If they had been
+      added to the anthrophony the system would only work if the user was
+      still and silent; this was a trade-off to allow for user mobil- ity,
+      allowing them to find various soundscapes. More data plitude ramps to a
+      given value over one second for signal smoothing. If Sounds Aware hears
+      an anthrophonic sound, the amplitude is faded up to -3 dB. If it hears a
+      geophonic sound, the amplitude of the geophonic sound is mapped onto the
+      synthesized sounds amplitude, creating a wind chime ef- fect. Geophonic
+      sounds also affect the modulation index and harmonicity of the frequency
+      modulation synthesis, cre- ating a variety of timbres depending on the
+      character of the current external soundscape. If a biophonic sound is
+      recog- nized, the amplitude of the ambient wash is faded down to -59 dB,
+      which is perceptibly silent when listened to in an urban environment.
+    </notes>
+  </div>
 
-    <div>
-      <div>Involving Students in Research</div>
-      <div>
-        <ul>
-          <li>Exposure to ongoing research in the field</li>
-          <li>Project-driven classes</li>
-          <li>Documentation as an integral part of any project</li>
-        </ul>
-      </div>
+  <div>
+    <div>What did I learn?</div>
+    <ul>
+      <li>The app would be more useful with user accounts.</li>
+      <li>
+        User training of the machine learning algorithm directly on the phone
+        is not accurate enough to understand more than a few sounds but might
+        be viable in the future.
+      </li>
+    </ul>
+  </div>
 
-      <notes>
-        Firstly I think it's very important to expose students to the current
-        research happening in the field. In my classes I have lists of projects
-        that I will show for certain learning moments. Students get to see how
-        what they are learning in the classroom is getting applied at a very
-        high level, and if how they stick with it they'll be able to do really
-        amazing things.
-        <br />
-        My philosophy for involving students in research involves engaging
-        students in project based learning. I treat documentation as an integral
-        part of the project process. It gives studnts an opportunity to think
-        critically about what they have created including what challanges they
-        learned from and how their project might fit into the wider world of
-        research.
+  <div>Project Design</div>
 
-        <br />
-        An example beginning project might be for students to create a mobile
-        music composition where they can use each other's phones as an
-        orchestra. Students will make choices about what types of sounds work
-        well on the phone and how to orchestrate them.
+  <div>Sounds Aware App Tour</div>
 
-        <br />
-        As a final project students might propose their own work that focuses on
-        what we had leraned through the semester. They turn in a written
-        proposal with a description of the final product and plans for
-        completing it. After the project is complete they will document it.
-        Higher level students will put their documentation in the form of a
-        conference paper and be encouraged to submit to a conference outside of
-        class.
-      </notes>
-    </div>
-    <div id="citations">References</div>
-    <div>
-      <div>Thank You</div>
-      <em> tcarso2@lsu.edu </em>
-      <a href="https://tatecarson.com" target="blank">https://tatecarson.com</a>
-    </div>
-    <div>Questions?</div>
-  </body>
+  <div>Home screen</div>
+
+  <div class="layout">
+    <video src="videos/home-page.mp4" width="500px" height="1000px" controls></video>
+    <notes>The discover page shows each soundwalk created by other users</notes>
+  </div>
+
+  <div>Discover screen</div>
+
+  <div class="layout">
+    <video src="videos/discover-page.mov" width="500px" height="1000px" controls></video>
+    <notes>The discover page shows each soundwalk created by other users</notes>
+  </div>
+
+  <div>Going on a soundwalk (walking the dog)</div>
+
+  <!-- <div class="layout">
+    <video
+      src="videos/goingOnSoundwalk.mp4"
+      width="500px"
+      height="1000px"
+      controls
+    ></video>
+    <notes
+      >Here I go on the dog walk soundwalk I had created earlier</notes
+    >
+  </div> -->
+
+  <div>
+    <iframe width="1000px" height="700px" src="https://www.youtube.com/embed/mpr_-GG7zno" title="YouTube video player"
+      frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen></iframe>
+
+  </div>
+
+  <div>Creating a soundwalk</div>
+
+  <div class="layout">
+    <video src="videos/stop-1.m4v" width="500px" controls></video>
+    <notes>This is the start of the walk. Its pretty quiet but you can hear some noise in the background</notes>
+  </div>
+  <div class="layout">
+    <video src="videos/stop1-phone.mov" width="500px" controls></video>
+    <notes>and this is what the phone interaction looked like</notes>
+  </div>
+
+  <div class="layout">
+    <video src="videos/lakeStop.m4v" width="500px" controls></video>
+    <notes>Then there was another stop at the lake</notes>
+  </div>
+
+
+  <div class="layout">
+    <video src="videos/lakeStop-phone.mov" width="500px" controls></video>
+    <notes>and the phone looked like this</notes>
+  </div>
+
+  <div>How is the app made?</div>
+
+  <div>
+    Planning Process - Figma
+
+    <notes>Before starting to develop the app I made a design in Figma, a tool for prototyping apps. The great thing
+      about Figma is that it allows you to prototype interactions as well as the interface. This helps you reason about
+      how the app will work before getting lost in the code.</notes>
+  </div>
+
+
+  <div id="citations">References</div>
+  <div>
+    <div>Thank You</div>
+    <em> tcarso2@lsu.edu </em>
+    <a href="https://tatecarson.com" target="blank">https://tatecarson.com</a>
+  </div>
+  <div>Questions?</div>
+</body>
+
 </html>
