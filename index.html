@@ -25,6 +25,15 @@
     }
   </style>
   <title>Participatory mobile music with smartphones</title>
+  <style>
+    .tg  {border-collapse:collapse;border-color:#ccc;border-spacing:0;}
+.tg td{background-color:#fff;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#f0f0f0;border-color:#ccc;border-style:solid;border-width:1px;color:#333;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+  </style>
   <link href="big.css" rel="stylesheet" type="text/css" />
   <link href="themes/charleston.css" rel="stylesheet" type="text/css" />
 
@@ -451,18 +460,6 @@
 
   <div>Going on a soundwalk (walking the dog)</div>
 
-  <!-- <div class="layout">
-    <video
-      src="videos/goingOnSoundwalk.mp4"
-      width="500px"
-      height="1000px"
-      controls
-    ></video>
-    <notes
-      >Here I go on the dog walk soundwalk I had created earlier</notes
-    >
-  </div> -->
-
   <div>
     <iframe width="1000px" height="700px" src="https://www.youtube.com/embed/mpr_-GG7zno" title="YouTube video player"
       frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -494,15 +491,153 @@
 
   <div>How is the app made?</div>
 
-  <div>
-    Planning Process - Figma
-
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:75% 25%;">
+    <img src="images/soundsaware-v2/figma-1.png" alt="">
+    <div>
+      Planning Process - Figma
+    </div>
     <notes>Before starting to develop the app I made a design in Figma, a tool for prototyping apps. The great thing
       about Figma is that it allows you to prototype interactions as well as the interface. This helps you reason about
       how the app will work before getting lost in the code.</notes>
   </div>
 
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:75% 25%;">
+    <img src="images/soundsaware-v2/figma-2.png" alt="">
+    <div>
+      Figma - Present mode
+    </div>
+    <notes>Present mode allows for testing the user interaction</notes>
+  </div>
 
+  <!-- 
+    Tech
+
+    Networking 
+      IPFS 
+      3box 
+
+    Sound 
+      Tone.js
+
+    Sonification of survey answers
+      - turning answers into music
+      - distance of stop mapped to distance of panner node listener  
+      - maybe show some code here
+      use carbon.now.sh for nice looking code snippets
+   -->
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:75% 25%;">
+    <img src="images/soundsaware-v2/ionic-framework.png" alt="">
+    <div>
+      Ionic Framework
+    </div>
+    <notes>
+      Ionic Framework is a UI toolkit with prebuilt elements. It makes developing with react much easier. With one
+      codebase you can target a mobile web app, a PWA or a native mobile app on IOS or Android.
+      I used many of the components in my app
+    </notes>
+  </div>
+  <div>
+    IPFS
+    <!-- TODO: add details about IPFS here -->
+    <notes>This is what provides the distributed backend.</notes>
+  </div>
+  <div>
+    <div>
+      3Box
+    </div>
+    <ul>
+      <li>Identity and Auth</li>
+      <li>Storage</li>
+      <li>Messaging</li>
+    </ul>
+    <notes>3Box is a framework that helps with building decentralized apps with IFPS. It provides an easy-to-use API
+      that handles identity, authorization, storage and messaging.
+      <br>
+      The identity and auth allow for users to login to an app without the developer having to manage user data.
+      <br>
+      The storage API can hold data specific to one user such as documents, preferences or settings.
+      <br>
+      The messaging API allows for the creation of threads, a feed that can be subscribed to that create the basis for a
+      distribute database.
+    </notes>
+  </div>
+  <!-- TODO: show examples of my use of 3box -->
+  <div class="layout" style="grid-template-columns: 50% 50%;">
+    <img src="images/soundsaware-v2/code-screenshots/login.png" alt="">
+    <div>Authorization</div>
+    <notes>
+      Here is the login function. We access portis, an ethereum wallet that allows users to login without having to
+      install extra software. It helps to link your unique wallet address, which is your identity, to 3box in order to
+      open your personal data box and space.
+    </notes>
+  </div>
+  <div class="layout" style="grid-template-columns: 50% 50%;">
+    <img src="images/soundsaware-v2/code-screenshots/joinThread.png" alt="">
+    <div>Authorization - pt 2</div>
+    <notes>
+      After authentication we can open a thread that contains a list of other threads that contain all of the soundwalks
+      created by users of the app. The selected soundwalk here is a way of recording which soundwalk a user was viewing
+      or editing previously.
+    </notes>
+  </div>
+  <div>Data Organization</div>
+  <div style="grid-template-columns: 1fr;grid-template-rows:25% 75%;">
+    <div>Public thread</div>
+    <img src="images/soundsaware-v2/code-screenshots/threadDiagram.png" alt="">
+    <notes>That thread that we connected to in the last slide is how each soundwalk is found. Every time a user creates
+      a soundwalk this data gets added to the thread.</notes>
+  </div>
+  <div style="grid-template-columns: 1fr;grid-template-rows:25% 75%;">
+    <div>Soundwalk thread</div>
+    <img src="images/soundsaware-v2/code-screenshots/soundwalkThreadDiagram.png" alt="">
+    <notes>The actual data for each soundwalk is stored in their own individual threads which have a reference in the
+      original soundwalk thread. Here we can see the thread contains the name of the soundwalk, the location of one
+      stop, and the survey answers that the user made for that stop.</notes>
+  </div>
+  <div>Survey Sonification</div>
+  <div class="layout" style="grid-template-columns: 50% 50%;">
+    <img src="images/soundsaware-v2/code-screenshots/survey1.png" alt="" />
+    <img src="images/soundsaware-v2/code-screenshots/survey2.png" alt="" />
+
+    <notes>Users are asked these questions every time they want to make a stop on their soundwalk. These questions are
+      based off of Sarah Payne's Perceived Restorativeness Scale (PRSS) mentioned earlier. These questions provide the basis for the sonification of soundwalks that users can hear on the discover page.</notes>
+  </div>
+
+  <div>
+    <div>
+      Sound composition
+    </div>
+    <ul>
+      <li>Wind chimes: hand chimes samples</li>
+      <li>Wind:  Noise oscillator -> pitch shifter -> low pass filter -> high pass filter</li>
+      <li>Background sounds: rustling leaves and waves samples</li>
+    </ul>
+    <notes>
+      Before mentioning exactly how the survey data was mapped I'll speak a bit about what types of sounds you hear and the inspiration for them. I wanted to base the sonification on an imaginary wind chime because of these beautiful sounding chimes in my neighborhood that I hear while walking my dog. 
+
+      <br>The wind chimes are driven by a number of chime samples in order to have fuller control over them.  
+    </notes> 
+  </div>
+  <!-- total-serialism, geolib, nexusui, findClosest (mine) -->
+  <!-- influenced by neighbors wind chime and la monte young tuning -->
+  <div>
+    <div>Wind Chimes</div>
+    <ul>
+      <li>Tuning - La Monte Young's Well Tuned Piano</li>
+      <li>Note groupings from Young chords - Opening Chord, Magic Chord, etc. 
+        <cite>
+          Gann, Kyle. 1993. “La Monte Young’s The Well-Tuned Piano.” Perspectives of New Music 31 (1): 134–62.
+      </cite> </li>
+    </ul>
+  </div>
+  <div class="layout" style="grid-template-columns: 1fr;grid-template-rows:25% 50%;" >
+    <div>Chord mappings</div>
+    <img src="images/soundsaware-v2/code-screenshots/ChordMappingDiagram.svg" alt="">
+      
+      
+    <notes>These chords change in the sonification depending on the average survey answers. I arranged them in an order I perceived to be more to less restorative sounding.</notes>
+  </div>
+  <div>Future Work</div>
   <div id="citations">References</div>
   <div>
     <div>Thank You</div>
